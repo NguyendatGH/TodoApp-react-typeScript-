@@ -1,0 +1,153 @@
+$errorColor: #f73446;
+$successColor: #0ac947;
+$warningColor: #ffbd21;
+.TaskItem {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  border-radius: 16px;
+  background: #fff;
+  margin-top: 44px;
+  box-sizing: border-box;
+  @media screen and (max-width: 390px) {
+    width: 330px;
+    height: auto;
+    margin-top: 0;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+  }
+}
+.Frame20 {
+  display: flex;
+  padding: 24px 32px;
+  align-items: center;
+  gap: 40px;
+  box-sizing: border-box;
+  @media screen and (max-width: 390px) {
+    width: 330px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    justify-content: flex-start;
+  }
+}
+.Frame4 {
+  display: flex;
+  width: 200px;
+  flex-direction: column;
+  gap: 8px;
+  @media screen and (max-width: 390px) {
+    width: 100%;
+    height: auto;
+  }
+}
+.default {
+  color: #91929e;
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.taskTitle {
+  color: #0a1629;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  @media screen and (max-width: 390px) {
+    align-self: stretch;
+    color: #0a1629;
+    font-family: Poppins;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 100;
+    line-height: normal;
+  }
+}
+.Frame18 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  width: 72px;
+  height: 53px;
+  box-sizing: border-box;
+  @media screen and (max-width: 390px) {
+    width: 100%;
+    height: auto;
+  }
+}
+.priority {
+  color: $errorColor;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  text-transform: capitalize;
+}
+
+.bannerFrame19 {
+  display: flex;
+  width: 120px;
+  padding: 8px 16px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 8px;
+  background: #edeef0;
+  box-sizing: border-box;
+}
+.bannerFrame19 span {
+  color: #7d8592;
+  text-align: center;
+  font-family: Arial;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.Frame19 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: auto;
+  gap: 40px;
+  @media screen and (max-width: 390px) {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 16px;
+  }
+}
+
+.process {
+  // background-image: $Done-image ;
+  cursor: pointer;
+}
+.changeTask {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  @media screen and (max-width: 390px) {
+    gap: 24px;
+  }
+}
+.editTask {
+  cursor: pointer;
+  @media screen and (max-width: 390px) {
+    order: 2;
+  }
+}
+.deleteTask {
+  cursor: pointer;
+  @media screen and (max-width: 390px) {
+    order: 1;
+  }
+}
