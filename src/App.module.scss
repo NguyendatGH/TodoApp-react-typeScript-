@@ -43,7 +43,12 @@ html {
   border: none;
   cursor: pointer;
   border-radius: 14px;
-  box-shadow: 0px 6px 12px 0px rgba(113, 63, 255, 0.25);
+  box-shadow: 0px 6px 12px 0px rgba(116, 70, 241, 0.25);
+  &:hover {
+    background-color: #7a55df;
+    transition: color 0.2s ease-in-out, background-color 0.15s ease-in-out,
+      border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
 }
 .AddIcon {
   width: 14px;

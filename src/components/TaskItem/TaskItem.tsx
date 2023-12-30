@@ -115,15 +115,27 @@ export const TaskItem: React.FC<Props> = ({ task, taskList, setTaskList }) => {
               {isExploding && <ConfettiExplosion />}
             </button>
 
-            <div className={styles.Task__process}>
+            <div
+              className={styles.Task__process}
+              style={{ width: "24px", height: "24px" }}
+            >
               <img src={image} alt="" />
             </div>
             <div className={styles.Task__handleTask}>
               <div
                 className={styles.Task__editTask}
                 onClick={() => openEditModal()}
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
               >
-                <img src={Edit} alt="" />
+                <img
+                  src={Edit}
+                  alt=""
+                  style={{ width: "22px", height: "22px" }}
+                />
                 {showEditModal ? (
                   <EditTaskModal
                     task={task}
@@ -138,8 +150,17 @@ export const TaskItem: React.FC<Props> = ({ task, taskList, setTaskList }) => {
               <div
                 className={styles.Task__deleteTask}
                 onClick={() => openDeleteModal()}
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
               >
-                <img src={Delete} alt="" />
+                <img
+                  src={Delete}
+                  alt=""
+                  style={{ width: "20px", height: "22px" }}
+                />
                 {showModal ? (
                   <DeleteTask
                     task={task}
