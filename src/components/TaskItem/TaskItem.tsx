@@ -1,4 +1,4 @@
-import "./TaskItem.scss";
+import styles from "./TaskItem.module.scss";
 import Edit from "./image/Edit.svg";
 import Delete from "./image/Delete.svg";
 import Done from "./image/Done.svg";
@@ -17,13 +17,14 @@ interface Props {
 
 const handleDisplayProgress = (priority: string) => {
   if (priority === "high") {
-    return "Todo";
+    return "To do";
   } else if (priority === "medium") {
     return "In Progress";
   } else {
     return "Done";
   }
 };
+
 const handleProgressImage = (priority: string) => {
   if (priority === "high") {
     return Non;
@@ -49,7 +50,7 @@ export const TaskItem: React.FC<Props> = ({ task, taskList, setTaskList }) => {
 
   const [showModal, setShowModal] = useState<boolean>(false);
   const [showEditModal, setShowEditModal] = useState<boolean>(false);
-
+  const [process, SetProcess] = useState(handleDisplayProgress(task.priority));
   const openEditModal = (): void => {
     setShowEditModal(true);
   };
@@ -57,32 +58,61 @@ export const TaskItem: React.FC<Props> = ({ task, taskList, setTaskList }) => {
     setShowModal(true);
   };
 
+  //handle toggle btn
+  const handleUpgrade = () => {
+    let updatedTaskList = [...taskList];
+    const updatedTask = { ...task };
+
+    if (task.priority === "high") {
+      updatedTask.priority = "medium";
+      SetProcess("In process");
+    } else if (task.priority === "medium") {
+      updatedTask.priority = "low";
+      SetProcess("Done");
+    } else {
+      updatedTask.priority = "high";
+      SetProcess("To do");
+    }
+    updatedTaskList = updatedTaskList.map((item) =>
+      item.id === updatedTask.id ? updatedTask : item
+    );
+    setTaskList(updatedTaskList);
+  };
   return (
     <>
-      <div className="TaskItem">
-        <div className="Frame20">
-          <div className="Frame4">
-            <span className="default">Task</span>
-            <span className="taskTitle">{task.title}</span>
+      <div className={styles.TaskItem}>
+        <div className={styles.TaskItem__item}>
+          <div className={styles.taskName}>
+            <span className={styles.taskName__default}>Task</span>
+            <span className={styles.taskName__title}>{task.title}</span>
           </div>
 
-          <div className="Frame18">
-            <span className="default">Priority</span>
-            <span className="priority" style={{ color: letterColor }}>
+          <div className={styles.taskPriority}>
+            <span className={styles.taskPriority__default}>Priority</span>
+            <span
+              className={styles.taskPriority__priority}
+              style={{ color: letterColor }}
+            >
               {task.priority}
             </span>
           </div>
-          <div className="Frame19">
-            <div className="bannerFrame19">
-              <span defaultValue={(task.isDone = "Todo")}>
-                {handleDisplayProgress(task.priority)}
-              </span>
-            </div>
-            <div className="process">
+          <div className={styles.Task__groupHandeBtn}>
+            <button
+              className={styles.Task__taskUpgrade}
+              id="toggleBtn"
+              onClick={handleUpgrade}
+            >
+              {process}
+            </button>
+
+            <div className={styles.Task__process}>
               <img src={image} alt="" />
             </div>
-            <div className="changeTask">
-              <div className="editTask" onClick={() => openEditModal()}>
+            <div className={styles.Task__handleTask}>
+              <div
+                className={styles.Task__editTask}
+                onClick={() => openEditModal()}
+              >
                 <img src={Edit} alt="" />
                 {showEditModal ? (
                   <EditTaskModal
@@ -95,7 +125,10 @@ export const TaskItem: React.FC<Props> = ({ task, taskList, setTaskList }) => {
                   <></>
                 )}
               </div>
-              <div className="deleteTask" onClick={() => openDeleteModal()}>
+              <div
+                className={styles.Task__deleteTask}
+                onClick={() => openDeleteModal()}
+              >
                 <img src={Delete} alt="" />
                 {showModal ? (
                   <DeleteTask

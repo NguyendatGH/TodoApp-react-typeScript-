@@ -1,4 +1,4 @@
-import "./AddTask.scss";
+import styles from "./AddTask.module.scss";
 import Cancel from "../image/Cancel.svg";
 import { useState } from "react";
 import { Task } from "../Task";
@@ -45,56 +45,61 @@ const AddTask: React.FC<Props> = ({
 
   return (
     <>
-      <div className="modal">
-        <div className="modal__modal">
-          <div className="modal__header">
-            <div className="modal__header--addTask">Add Task</div>
+      <div className={styles.modal}>
+        <div className={styles.modal__modal}>
+          <div className={styles.modal__header}>
+            <div className={styles.modal__header__addTask}>Add Task</div>
             <img
-              className="modal__header--closeIcon"
+              className={styles.modal__header__closeIcon}
               src={Cancel}
               onClick={handleClose}
             ></img>
           </div>
-          <div className="modal__taskTitle">
-            <div className="modal__taskTitle--name default">Task</div>
+          <div className={styles.modal__taskTitle}>
+            <div className={styles.modal__taskTitle__name__default}>Task</div>
             <input
-              className="modal__taskTitle--textArea "
+              className={styles.modal__taskTitle__textArea}
               placeholder="Task name"
               onChange={(e) => setTask(e.target.value)}
             ></input>
           </div>
-          <div className="modal__taskPriority">
-            <div className="modal__taskPriority--name default">Priority</div>
-            <div className="modal__groupBtn">
+          <div className={styles.modal__taskPriority}>
+            <div className={styles.modal__taskPriority__name__default}>
+              Priority
+            </div>
+            <div className={styles.modal__groupBtn}>
               <button
-                className="modal__Btn high"
+                className={styles.modal__Btn__high}
                 onClick={() => getPriority("high")}
               >
                 High
               </button>
               <button
-                className="modal__Btn medium"
+                className={styles.modal__Btn__medium}
                 onClick={() => getPriority("medium")}
               >
                 Medium
               </button>
               <button
-                className="modal__Btn low"
+                className={styles.modal__Btn__low}
                 onClick={() => getPriority("low")}
               >
                 Low
               </button>
             </div>
           </div>
-          <div className="modal__handleTaskBtn">
+          <div className={styles.modal__handleTaskBtn}>
             <div
-              className="modal__handleTaskBtn--add"
+              className={styles.modal__handleTaskBtn__add}
               onClick={(e) => handleSubmit(e)}
             >
               Add
             </div>
 
-            <div className="modal__handleTaskBtn--cancel" onClick={handleClose}>
+            <div
+              className={styles.modal__handleTaskBtn__cancel}
+              onClick={handleClose}
+            >
               Cancel
             </div>
           </div>

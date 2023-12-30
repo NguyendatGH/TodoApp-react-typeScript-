@@ -1,12 +1,12 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import "./App.scss";
+import styles from "./App.module.scss";
 import { useEffect, useState } from "react";
 import face from "./assets/face.png";
 import AddTask from "./components/Modal/AddTask";
 import { Task } from "./components/Task";
 import TaskItem from "./components/TaskItem/TaskItem";
-
+// console.log(styles);
 function Home() {
   const [open, setOpen] = useState<boolean>(false);
   const [task, setTask] = useState<string>("");
@@ -26,22 +26,22 @@ function Home() {
 
   return (
     <>
-      <div className="todoApp">
-        <div className=" container">
+      <div className={styles.todoApp}>
+        <div className={styles.container}>
           {" "}
-          <div className="header">
-            <h2 className="header__Title">Task List </h2>
-            <button className="AddTaskBtn" onClick={handleAddTask}>
+          <div className={styles.header}>
+            <h2 className={styles.header__title}>Task List </h2>
+            <button className={styles.AddTaskBtn} onClick={handleAddTask}>
               <FontAwesomeIcon
                 icon={faPlus}
                 style={{ color: "#ffffff" }}
-                className="AddIcon"
+                className={styles.AddIcon}
               />
-              <div className="contentBtn">Add Task</div>
+              <div className={styles.contentBtn}>Add Task</div>
             </button>
           </div>
           {open ? (
-            <div className="modal__overlay">
+            <div className={styles.modal__overlay}>
               <AddTask
                 setOpen={setOpen}
                 task={task}
@@ -51,9 +51,9 @@ function Home() {
               />
             </div>
           ) : show ? (
-            <div className="primarilyPage">
-              <p className="NoTask">You have 0 task today </p>
-              <img src={face} alt="" className="faceIcon" />
+            <div className={styles.primarilyPage}>
+              <p className={styles.NoTask}>You have 0 task today </p>
+              <img src={face} alt="" className={styles.faceIcon} />
             </div>
           ) : (
             taskList.map((task, index) => (

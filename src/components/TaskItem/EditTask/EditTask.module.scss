@@ -3,7 +3,7 @@ $warningColor: #ffbd21;
 $errorColor: #f73446;
 @import url("https://fonts.googleapis.com/css2?family=Lato&family=Montserrat:ital@1&family=Neucha&family=Poppins:ital,wght@0,600;1,300&family=Roboto:ital,wght@0,700;1,300&display=swap");
 
-.modal-overlay {
+.modal__overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -18,7 +18,7 @@ $errorColor: #f73446;
   left: 50%;
   transform: translate(-50%, -50%);
 }
-.modal__modal {
+.modal__modal__EditTask {
   width: 440px;
   height: 302px;
   display: inline-flex;
@@ -40,14 +40,14 @@ $errorColor: #f73446;
     background: #fff;
   }
 }
-.modal__header {
+.modal__EditTask__header {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
   align-self: stretch;
 }
-.modal__header--addTask {
+.modal__EditTask__header__title {
   color: #0a1629;
   font-family: Poppins;
   font-size: 22px;
@@ -55,17 +55,17 @@ $errorColor: #f73446;
   font-weight: 600;
   line-height: 36px; /* 163.636% */
 }
-.modal__header--closeIcon {
+.modal__EditTask__closeModal {
   cursor: pointer;
 }
-.modal__taskTitle {
+.modal__InputArea {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 8px;
   width: 100%;
 }
-.modal__taskTitle--name {
+.modal__inputArea__title__default {
   color: #7d8592;
   font-family: Poppins;
   font-size: 14px;
@@ -74,7 +74,10 @@ $errorColor: #f73446;
   line-height: normal;
 }
 
-.modal__taskTitle--textArea {
+.modal__inputForm__textArea {
+  width: 100%;
+}
+.modal__inputForm__taskTitle {
   width: 100%;
   box-sizing: border-box;
   display: flex;
@@ -83,25 +86,24 @@ $errorColor: #f73446;
   gap: 10px;
   border-radius: 8px;
   border: 1px solid #d8e0f0;
-  color: #91929e;
+  color: #000;
   font-family: Poppins;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  &:focus {
-    outline: none;
-  }
 }
-
-.modal__taskPriority {
+.modal__inputForm__taskTitle:focus {
+  outline: none;
+}
+.modal__taskPriority__EditTask {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 8px;
   align-self: stretch;
 }
-.modal__taskPriority--name {
+.modal__taskPriority__title__EditTask {
   color: #7d8592;
   font-family: Poppins;
   font-size: 14px;
@@ -109,12 +111,13 @@ $errorColor: #f73446;
   font-weight: 600;
   line-height: normal;
 }
-.modal__groupBtn {
+.modal__groupBtn__EditTask {
   display: flex;
   align-items: flex-start;
   gap: 12px;
+  margin-top: 5px;
 }
-.modal__Btn {
+@mixin Btn__EditTask {
   width: 120px;
   height: 36px;
   flex-shrink: 0;
@@ -132,8 +135,8 @@ $errorColor: #f73446;
   align-items: center;
   cursor: pointer;
   @media screen and (max-width: 390px) {
-    width: 70px;
-    height: 30px;
+    width: 30px;
+    height: 10px;
     border-radius: 50%;
     display: inline-flex;
     padding: 10px 20px;
@@ -145,7 +148,8 @@ $errorColor: #f73446;
   }
 }
 
-.high {
+.modal__Btn__EditTask__high {
+  @include Btn__EditTask;
   border: 1px solid $errorColor;
   color: $errorColor;
   &:hover {
@@ -155,11 +159,10 @@ $errorColor: #f73446;
       border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   }
 }
-
-.medium {
+.modal__Btn__EditTask__medium {
+  @include Btn__EditTask;
   border: 1px solid $warningColor;
   color: $warningColor;
-  background-color: #fff;
   &:hover {
     color: #fff;
     background-color: $warningColor;
@@ -167,8 +170,8 @@ $errorColor: #f73446;
       border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   }
 }
-
-.low {
+.modal__Btn__EditTask__low {
+  @include Btn__EditTask;
   border: 1px solid $successColor;
   color: $successColor;
   &:hover {
@@ -178,18 +181,17 @@ $errorColor: #f73446;
       border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   }
 }
-
-.modal__handleTaskBtn {
+.modal__handleTaskBtn__EditTask {
   display: flex;
   align-items: center;
   gap: 20px;
+  margin-top: 6px;
   @media screen and (max-width: 390px) {
     align-items: flex-start;
     justify-content: flex-start;
-    padding-top: 10px;
   }
 }
-.modal__handleTaskBtn--add {
+.modal__handleTaskBtn__EditTask__edit {
   width: 114px;
   height: 40px;
   flex-shrink: 0;
@@ -206,19 +208,17 @@ $errorColor: #f73446;
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
+  @media screen and (max-width: 390px) {
+    width: 80px;
+    height: 30px;
+  }
   &:hover {
     background-color: #5621e9;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
       border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   }
-  @media screen and (max-width: 390px) {
-    width: 80px;
-    height: 30px;
-  }
 }
-
-.modal__handleTaskBtn--cancel {
+.modal__handleTaskBtn__EditTask__cancel {
   width: 118px;
   height: 40px;
   flex-shrink: 0;
@@ -237,15 +237,14 @@ $errorColor: #f73446;
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
+  @media screen and (max-width: 390px) {
+    width: 80px;
+    height: 30px;
+  }
   &:hover {
     background-color: #7d8592;
     color: white;
     transition: color 0.2s ease-in-out, background-color 0.15s ease-in-out,
       border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-  }
-  @media screen and (max-width: 390px) {
-    width: 80px;
-    height: 30px;
   }
 }

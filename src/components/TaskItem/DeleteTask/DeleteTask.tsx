@@ -1,5 +1,5 @@
 import { Task } from "../../Task";
-import "./DeleteTask.scss";
+import styles from "./DeleteTask.module.scss";
 interface Props {
   task: Task;
   taskList: Task[];
@@ -29,18 +29,18 @@ export const DeleteTask: React.FC<Props> = ({
   };
   console.log("taskListUpdate__afterDelete", taskList);
   return (
-    <div className="modal-overlay">
-      <div className="modal__Delete">
-        <div className="modal__modalDelete">
-          <div className="modal__modalDeleteContent">
-            <div className="modal--finalWarning">
+    <div className={styles.modal__overlay}>
+      <div className={styles.modal__DeleteTask}>
+        <div className={styles.modal__modalDelete}>
+          <div className={styles.modal__modalContent}>
+            <div className={styles.modal__titleWarning}>
               Are you sure you want to delete this task?
             </div>
-            <div className="modal--groupBtn">
-              <div className="modalBtn delete" onClick={() => handleConfrim()}>
+            <div className={styles.modal__handleBtn}>
+              <div className={styles.deleteBtn} onClick={() => handleConfrim()}>
                 Delete
               </div>
-              <div className="modalBtn cancel" onClick={() => handleCancel()}>
+              <div className={styles.cancelBtn} onClick={() => handleCancel()}>
                 Cancel
               </div>
             </div>
