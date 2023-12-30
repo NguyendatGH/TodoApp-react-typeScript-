@@ -4,10 +4,11 @@ import Delete from "./image/Delete.svg";
 import Done from "./image/Done.svg";
 import Half from "./image/Half.svg";
 import Non from "./image/Non.svg";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Task } from "../Task";
 import { DeleteTask } from "./DeleteTask/DeleteTask";
 import { EditTaskModal } from "./EditTask/EditTask";
+import ConfettiExplosion from "react-confetti-explosion";
 
 interface Props {
   task: Task;
@@ -47,7 +48,6 @@ const getColor = (priority: string) => {
 export const TaskItem: React.FC<Props> = ({ task, taskList, setTaskList }) => {
   const image = handleProgressImage(task.priority);
   const letterColor = getColor(task.priority);
-
   const [showModal, setShowModal] = useState<boolean>(false);
   const [showEditModal, setShowEditModal] = useState<boolean>(false);
   const [process, SetProcess] = useState(handleDisplayProgress(task.priority));
@@ -77,7 +77,16 @@ export const TaskItem: React.FC<Props> = ({ task, taskList, setTaskList }) => {
       item.id === updatedTask.id ? updatedTask : item
     );
     setTaskList(updatedTaskList);
+    setIsExploding(true);
   };
+  const [isExploding, setIsExploding] = React.useState(false);
+  useEffect(() => {
+    if (isExploding) {
+      setTimeout(() => {
+        setIsExploding(false);
+      }, 800);
+    }
+  }, [isExploding]);
   return (
     <>
       <div className={styles.TaskItem}>
@@ -103,6 +112,7 @@ export const TaskItem: React.FC<Props> = ({ task, taskList, setTaskList }) => {
               onClick={handleUpgrade}
             >
               {process}
+              {isExploding && <ConfettiExplosion />}
             </button>
 
             <div className={styles.Task__process}>
