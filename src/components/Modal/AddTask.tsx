@@ -2,6 +2,8 @@ import styles from "./AddTask.module.scss";
 import Cancel from "../image/Cancel.svg";
 import { useState } from "react";
 import { Task } from "../Task";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 interface Props {
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -32,8 +34,11 @@ const AddTask: React.FC<Props> = ({
         },
       ]);
       setTask("");
+      handleClose();
+    } else {
+      setOpen(true);
+      toast.error("Please choose the priority!!!");
     }
-    setTimeout(handleClose, 200);
   };
   console.log(taskList);
   const getPriority = (select: string) => {
@@ -45,6 +50,7 @@ const AddTask: React.FC<Props> = ({
 
   return (
     <>
+      <ToastContainer />
       <div className={styles.modal}>
         <div className={styles.modal__modal}>
           <div className={styles.modal__header}>
@@ -63,6 +69,7 @@ const AddTask: React.FC<Props> = ({
               onChange={(e) => setTask(e.target.value)}
             ></input>
           </div>
+
           <div className={styles.modal__taskPriority}>
             <div className={styles.modal__taskPriority__name__default}>
               Priority
@@ -70,19 +77,19 @@ const AddTask: React.FC<Props> = ({
             <div className={styles.modal__groupBtn}>
               <button
                 className={styles.modal__Btn__high}
-                onClick={() => getPriority("high")}
+                onClick={() => getPriority("High")}
               >
                 High
               </button>
               <button
                 className={styles.modal__Btn__medium}
-                onClick={() => getPriority("medium")}
+                onClick={() => getPriority("Medium")}
               >
                 Medium
               </button>
               <button
                 className={styles.modal__Btn__low}
-                onClick={() => getPriority("low")}
+                onClick={() => getPriority("Low")}
               >
                 Low
               </button>

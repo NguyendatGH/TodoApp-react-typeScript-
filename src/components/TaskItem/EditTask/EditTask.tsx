@@ -81,19 +81,19 @@ export const EditTaskModal: React.FC<Props> = ({
               <div className={styles.modal__groupBtn__EditTask}>
                 <div
                   className={styles.modal__Btn__EditTask__high}
-                  onClick={() => getPriority("high")}
+                  onClick={() => getPriority("High")}
                 >
                   High
                 </div>
                 <div
                   className={styles.modal__Btn__EditTask__medium}
-                  onClick={() => getPriority("medium")}
+                  onClick={() => getPriority("Medium")}
                 >
                   Medium
                 </div>
                 <div
                   className={styles.modal__Btn__EditTask__low}
-                  onClick={() => getPriority("low")}
+                  onClick={() => getPriority("Low")}
                 >
                   Low
                 </div>

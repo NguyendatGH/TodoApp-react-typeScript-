@@ -16,29 +16,19 @@ interface Props {
   setTaskList: React.Dispatch<React.SetStateAction<Task[]>>;
 }
 
-const handleDisplayProgress = (priority: string) => {
-  if (priority === "high") {
-    return "To do";
-  } else if (priority === "medium") {
-    return "In Progress";
-  } else {
-    return "Done";
-  }
-};
-
 const handleProgressImage = (priority: string) => {
-  if (priority === "high") {
+  if (priority === "To do") {
     return Non;
-  } else if (priority === "medium") {
+  } else if (priority === "In Process") {
     return Half;
   } else {
     return Done;
   }
 };
 const getColor = (priority: string) => {
-  if (priority === "high") {
+  if (priority === "High") {
     return "#f73446";
-  } else if (priority === "medium") {
+  } else if (priority === "Medium") {
     return "#ffbd21";
   } else {
     return "#0ac947";
@@ -46,11 +36,12 @@ const getColor = (priority: string) => {
 };
 
 export const TaskItem: React.FC<Props> = ({ task, taskList, setTaskList }) => {
-  const image = handleProgressImage(task.priority);
   const letterColor = getColor(task.priority);
   const [showModal, setShowModal] = useState<boolean>(false);
   const [showEditModal, setShowEditModal] = useState<boolean>(false);
-  const [process, SetProcess] = useState(handleDisplayProgress(task.priority));
+  const processOptions: string[] = ["To do", "In Process", "Done"];
+  const [count, setCount] = useState(0);
+
   const openEditModal = (): void => {
     setShowEditModal(true);
   };
@@ -60,26 +51,14 @@ export const TaskItem: React.FC<Props> = ({ task, taskList, setTaskList }) => {
 
   //handle toggle btn
   const handleUpgrade = () => {
-    let updatedTaskList = [...taskList];
-    const updatedTask = { ...task };
-
-    if (task.priority === "high") {
-      updatedTask.priority = "medium";
-      SetProcess("In process");
-    } else if (task.priority === "medium") {
-      updatedTask.priority = "low";
-      SetProcess("Done");
-    } else {
-      updatedTask.priority = "high";
-      SetProcess("To do");
-    }
-    updatedTaskList = updatedTaskList.map((item) =>
-      item.id === updatedTask.id ? updatedTask : item
-    );
-    setTaskList(updatedTaskList);
+    setCount((click) => (click + 1) % processOptions.length);
     setIsExploding(true);
   };
+  const process: string = processOptions[count];
+  console.log(process);
+  const image = handleProgressImage(process);
   const [isExploding, setIsExploding] = React.useState(false);
+
   useEffect(() => {
     if (isExploding) {
       setTimeout(() => {
