@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Task } from "../../Task";
 import Cancel from "../../image/Cancel.svg";
 import styles from "./EditTask.module.scss";
+
 interface Props {
   task: Task;
   taskList: Task[];
@@ -14,7 +15,6 @@ export const EditTaskModal: React.FC<Props> = ({
   setShowEditModal,
 }) => {
   const [editPriority, setEditPriority] = useState<string>(task.priority);
-
   const [editTask, setEditTask] = useState<string>(task.title);
 
   const getPriority = (select: string) => {

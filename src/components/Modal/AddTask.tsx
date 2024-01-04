@@ -24,15 +24,13 @@ const AddTask: React.FC<Props> = ({
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (task.trim() !== "" && priority.trim() !== "") {
-      setTaskList([
-        ...taskList,
-        {
-          id: crypto.randomUUID(), //stackOverFlow
-          title: task,
-          priority: priority,
-          isDone: "",
-        },
-      ]);
+      const newTask: Task = {
+        id: crypto.randomUUID(), //stackOverFlow
+        title: task,
+        priority: priority,
+        isDone: "",
+      };
+      setTaskList((prevTaskList) => [newTask, ...prevTaskList]);
       setTask("");
       handleClose();
     } else {

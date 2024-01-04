@@ -9,7 +9,7 @@ import { Task } from "../Task";
 import { DeleteTask } from "./DeleteTask/DeleteTask";
 import { EditTaskModal } from "./EditTask/EditTask";
 import ConfettiExplosion from "react-confetti-explosion";
-
+import { getColor } from "./getColor";
 interface Props {
   task: Task;
   taskList: Task[];
@@ -23,15 +23,6 @@ const handleProgressImage = (priority: string) => {
     return Half;
   } else {
     return Done;
-  }
-};
-const getColor = (priority: string) => {
-  if (priority === "High") {
-    return "#f73446";
-  } else if (priority === "Medium") {
-    return "#ffbd21";
-  } else {
-    return "#0ac947";
   }
 };
 
@@ -57,6 +48,7 @@ export const TaskItem: React.FC<Props> = ({ task, taskList, setTaskList }) => {
   const process: string = processOptions[count];
   console.log(process);
   const image = handleProgressImage(process);
+
   const [isExploding, setIsExploding] = React.useState(false);
 
   useEffect(() => {
@@ -66,6 +58,7 @@ export const TaskItem: React.FC<Props> = ({ task, taskList, setTaskList }) => {
       }, 800);
     }
   }, [isExploding]);
+
   return (
     <>
       <div className={styles.TaskItem}>
