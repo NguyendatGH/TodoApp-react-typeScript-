@@ -9,6 +9,7 @@ interface Props {
   setTaskList: React.Dispatch<React.SetStateAction<Task[]>>;
   setShowEditModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
+
 export const EditTaskModal: React.FC<Props> = ({
   task,
   setTaskList,
@@ -81,19 +82,25 @@ export const EditTaskModal: React.FC<Props> = ({
               <div className={styles.modal__groupBtn__EditTask}>
                 <div
                   className={styles.modal__Btn__EditTask__high}
-                  onClick={() => getPriority("High")}
+                  onClick={() => {
+                    getPriority("High");
+                  }}
                 >
                   High
                 </div>
                 <div
                   className={styles.modal__Btn__EditTask__medium}
-                  onClick={() => getPriority("Medium")}
+                  onClick={() => {
+                    getPriority("Medium");
+                  }}
                 >
                   Medium
                 </div>
                 <div
                   className={styles.modal__Btn__EditTask__low}
-                  onClick={() => getPriority("Low")}
+                  onClick={() => {
+                    getPriority("Low");
+                  }}
                 >
                   Low
                 </div>

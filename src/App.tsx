@@ -10,11 +10,19 @@ import TaskItem from "./components/TaskItem/TaskItem";
 function Home() {
   const [open, setOpen] = useState<boolean>(false);
   const [task, setTask] = useState<string>("");
-  const [taskList, setTaskList] = useState<Task[]>([]);
+  const [taskList, setTaskList] = useState<Task[]>(() => {
+    const storageTaskList = localStorage.getItem("list");
+    return storageTaskList ? JSON.parse(storageTaskList) : [];
+  });
   const [show, setShow] = useState<boolean>(true);
   const handleAddTask = () => {
     setOpen(true);
   };
+
+  useEffect(() => {
+    const storedTaskList = JSON.stringify(taskList);
+    localStorage?.setItem("list", storedTaskList);
+  }, [taskList]);
 
   useEffect(() => {
     if (taskList.length > 0) {
