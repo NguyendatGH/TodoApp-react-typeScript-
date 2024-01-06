@@ -158,6 +158,10 @@ $errorColor: #f73446;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
       border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   }
+  &.selected {
+    background-color: $errorColor;
+    color: white;
+  }
 }
 .modal__Btn__EditTask__medium {
   @include Btn__EditTask;
@@ -169,6 +173,10 @@ $errorColor: #f73446;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
       border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   }
+  &.selected {
+    background-color: $warningColor;
+    color: white;
+  }
 }
 .modal__Btn__EditTask__low {
   @include Btn__EditTask;
@@ -179,6 +187,10 @@ $errorColor: #f73446;
     background-color: $successColor;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
       border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+  &.selected {
+    background-color: $successColor;
+    color: white;
   }
 }
 .modal__handleTaskBtn__EditTask {

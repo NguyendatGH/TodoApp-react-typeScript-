@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Task } from "../../Task";
 import Cancel from "../../image/Cancel.svg";
 import styles from "./EditTask.module.scss";
+import clsx from "clsx";
 
 interface Props {
   task: Task;
@@ -81,7 +82,9 @@ export const EditTaskModal: React.FC<Props> = ({
               </div>
               <div className={styles.modal__groupBtn__EditTask}>
                 <div
-                  className={styles.modal__Btn__EditTask__high}
+                  className={clsx(styles.modal__Btn__EditTask__high, {
+                    [styles.selected]: editPriority === "High",
+                  })}
                   onClick={() => {
                     getPriority("High");
                   }}
@@ -89,7 +92,9 @@ export const EditTaskModal: React.FC<Props> = ({
                   High
                 </div>
                 <div
-                  className={styles.modal__Btn__EditTask__medium}
+                  className={clsx(styles.modal__Btn__EditTask__medium, {
+                    [styles.selected]: editPriority === "Medium",
+                  })}
                   onClick={() => {
                     getPriority("Medium");
                   }}
@@ -97,7 +102,9 @@ export const EditTaskModal: React.FC<Props> = ({
                   Medium
                 </div>
                 <div
-                  className={styles.modal__Btn__EditTask__low}
+                  className={clsx(styles.modal__Btn__EditTask__low, {
+                    [styles.selected]: editPriority === "Low",
+                  })}
                   onClick={() => {
                     getPriority("Low");
                   }}
